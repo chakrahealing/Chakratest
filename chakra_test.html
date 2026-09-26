@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>चक्र अलाइनमेंट टेस्ट</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7f6; color: #333; padding: 20px; display: flex; justify-content: center; }
+        .quiz-container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 600px; width: 100%; text-align: center; }
+        h2 { color: #4a154b; }
+        .btn { background: #25D366; color: white; border: none; padding: 12px 24px; font-size: 16px; border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-block; margin: 10px; }
+        .btn-yes { background: #4CAF50; }
+        .btn-no { background: #f44336; }
+        .btn-contact { background: #007bff; }
+        .question { font-size: 18px; margin-bottom: 20px; font-weight: bold; }
+        .result-box { display: none; background: #fff3cd; border: 1px solid #ffeeba; padding: 20px; border-radius: 8px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h2>🧘‍♂️ चक्र अलाइनमेंट परीक्षण 🧘‍♀️</h2>
+    <hr>
+    <div id="quiz-section">
+        <p id="progress">प्रश्न 1 / 7</p>
+        <div class="question" id="question-text">क्या आप अक्सर बिना किसी ठोस कारण के भविष्य या पैसों को लेकर असुरक्षित महसूस करते हैं?</div>
+        <button class="btn btn-yes" onclick="answer('yes')">हाँ</button>
+        <button class="btn btn-no" onclick="answer('no')">नहीं</button>
+    </div>
+
+    <div id="result-section" class="result-box">
+        <h3>आपका परीक्षण परिणाम:</h3>
+        <p id="result-text" style="font-size: 20px; font-weight: bold; color: #d9534f;"></p>
+        <p style="font-size: 16px; line-height: 1.6;"><strong>सुझाव:</strong> इस चक्र की शुद्धि और रोगों से मुक्ति पाने के लिए हीलिंग वाटर बनाकर निरंतर सेवन करें।</p>
+        <hr>
+        <p style="font-weight: bold; color: #555;">हीलिंग वाटर बनाने की प्रामाणिक विधि जानने के लिए हमसे संपर्क करें:</p>
+        <a id="contact-btn" href="#" target="_blank" class="btn btn-contact">💬 विधि जानने के लिए संपर्क करें</a>
+        <br>
+        <a id="share-btn" href="#" target="_blank" class="btn">📢 परिणाम WhatsApp पर शेयर करें</a>
+    </div>
+</div>
+
+<script>
+    const questions = [
+        { text: "क्या आप अक्सर बिना किसी ठोस कारण के भविष्य या पैसों को लेकर असुरक्षित महसूस करते हैं?", chakra: "मूलाधार चक्र (Root Chakra)" },
+        { text: "क्या आपके जीवन में रचनात्मकता (Creativity) और उत्साह की कमी महसूस होती है?", chakra: "स्वाधिष्ठान चक्र (Sacral Chakra)" },
+        { text: "क्या आपको छोटे-छोटे निर्णय लेने में बहुत कठिनाई होती है या हमेशा आत्मविश्वास की कमी लगती है?", chakra: "मणिपुर चक्र (Solar Plexus Chakra)" },
+        { text: "क्या आपके लिए दूसरों को क्षमा करना या उन पर आसानी से भरोसा करना बहुत मुश्किल होता है?", chakra: "अनाहत चक्र (Heart Chakra)" },
+        { text: "क्या आपको अपनी बात या विचारों को दूसरों के सामने रखने में झिझक या डर महसूस होता है?", chakra: "विशुद्धि चक्र (Throat Chakra)" },
+        { text: "क्या आपका मन हमेशा भ्रमित (Confused) रहता है और आप जीवन का सही लक्ष्य तय नहीं कर पा रहे हैं?", chakra: "आज्ञा चक्र (Third Eye Chakra)" },
+        { text: "क्या आप जीवन को पूरी तरह निरर्थक मानते हैं और मानसिक शांति महसूस नहीं कर पाते?", chakra: "सहस्रार चक्र (Crown Chakra)" }
+    ];
+
+    let currentIdx = 0;
+    let scores = {};
+
+    function answer(val) {
+        let currentChakra = questions[currentIdx].chakra;
+        if (val === 'yes') {
+            scores[currentChakra] = (scores[currentChakra] || 0) + 1;
+        } else {
+            scores[currentChakra] = (scores[currentChakra] || 0) + 0;
+        }
+
+        currentIdx++;
+        if (currentIdx < questions.length) {
+            document.getElementById("progress").innerText = `प्रश्न ${currentIdx + 1} / 7`;
+            document.getElementById("question-text").innerText = questions[currentIdx].text;
+        } else {
+            showResults();
+        }
+    }
+
+    function showResults() {
+        document.getElementById("quiz-section").style.display = "none";
+        document.getElementById("result-section").style.display = "block";
+
+        let maxChakra = "सभी चक्र संतुलित हैं";
+        let maxScore = 0;
+
+        for (let chakra in scores) {
+            if (scores[chakra] > maxScore) {
+                maxScore = scores[chakra];
+                maxChakra = chakra;
+            }
+        }
+
+        if(maxScore === 0) {
+            maxChakra = "आपके सभी मुख्य चक्र अच्छी स्थिति में प्रतीत हो रहे हैं!";
+        }
+
+        document.getElementById("result-text").innerText = maxChakra;
+
+        // WhatsApp Links Configuration
+        let phone = "919335128544";
+        let contactMsg = encodeURIComponent(`प्रणाम, मैंने चक्र टेस्ट किया है और मुझे इसके लिए हीलिंग वाटर बनाने की विधि जाननी है।`);
+        let shareMsg = encodeURIComponent(`नमस्ते! मैंने अपना चक्र अलाइनमेंट टेस्ट किया। मेरा असंतुलित चक्र है: ${maxChakra}। आप भी अपना टेस्ट कर सकते हैं!`);
+
+        document.getElementById("contact-btn").href = `https://wa.me{phone}?text=${contactMsg}`;
+        document.getElementById("share-btn").href = `https://wa.me{shareMsg}`;
+    }
+</script>
+
+</body>
+</html>
