@@ -107,24 +107,15 @@
         let phone = "919335128544"; 
         let txt = "प्रणाम Healonic, मैंने चक्र परीक्षण किया है। मेरा असंतुलित चक्र है: " + finalChakra + "। कृपया मुझे इसके लिए हीलिंग वाटर चार्ज करने की प्रामाणिक विधि बताएं।";
         
-        // सुरक्षित और डायरेक्ट डीप लिंक जो सीधे व्हाट्सएप एप ओपन करेगा
-        window.location.href = "whatsapp://send?phone=" + phone + "&text=" + encodeURIComponent(txt);
-        
-        // यदि किसी फोन में डायरेक्ट प्रोटोकॉल ब्लॉक हो, तो बैकअप के लिए वेब लिंक 1 सेकंड बाद चलेगा
-        setTimeout(function() {
-            window.location.href = "https://whatsapp.com" + phone + "&text=" + encodeURIComponent(txt);
-        }, 1000);
+        // ब्राउज़र क्रैश और टूटे हुए लिंक को रोकने के लिए सबसे सुरक्षित यूनिवर्सल लिंक का उपयोग
+        window.location.href = "https://whatsapp.com" + phone + "&text=" + encodeURIComponent(txt);
     }
 
     function shareOnWhatsApp(e) {
         if(e) { e.preventDefault(); e.stopPropagation(); }
         let txt = "नमस्ते! मैंने Healonic पर अपना चक्र टेस्ट किया। मेरा असंतुलित ऊर्जा केंद्र है: " + finalChakra + "। आप भी नीचे दिए गए लिंक से अपना टेस्ट कर सकते हैं: https://github.io";
         
-        window.location.href = "whatsapp://send?text=" + encodeURIComponent(txt);
-        
-        setTimeout(function() {
-            window.location.href = "https://whatsapp.com" + encodeURIComponent(txt);
-        }, 1000);
+        window.location.href = "https://whatsapp.com" + encodeURIComponent(txt);
     }
 </script>
 
