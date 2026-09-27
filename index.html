@@ -3,52 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>चक्र अलाइनमेंट टेस्ट</title>
+    <title>Healonic - चक्र अलाइनमेंट टेस्ट</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7f6; color: #333; padding: 20px; display: flex; justify-content: center; }
         .quiz-container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 600px; width: 100%; text-align: center; }
-        h2 { color: #4a154b; }
-        .btn { background: #25D366; color: white; border: none; padding: 12px 24px; font-size: 16px; border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-block; margin: 10px; }
+        h2 { color: #4a154b; margin-bottom: 5px; }
+        .brand-sub { font-size: 14px; color: #666; margin-bottom: 20px; font-style: italic; }
+        .btn { background: #25D366; color: white; border: none; padding: 12px 24px; font-size: 16px; border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-block; margin: 10px; font-weight: bold; }
         .btn-yes { background: #4CAF50; }
         .btn-no { background: #f44336; }
         .btn-contact { background: #007bff; }
-        .question { font-size: 18px; margin-bottom: 20px; font-weight: bold; }
-        .result-box { display: none; background: #fff3cd; border: 1px solid #ffeeba; padding: 20px; border-radius: 8px; margin-top: 20px; }
+        .question { font-size: 18px; margin-bottom: 20px; font-weight: bold; line-height: 1.5; }
+        .result-box { display: none; background: #fff3cd; border: 1px solid #ffeeba; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: left; }
+        .highlight { color: #d9534f; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="quiz-container">
-    <h2>🧘‍♂️ चक्र अलाइनमेंट परीक्षण 🧘‍♀️</h2>
+    <h2>🧘‍♂️ Healonic 🧘‍♀️</h2>
+    <div class="brand-sub">Tuning your Chakras, Aligning your Life</div>
     <hr>
     <div id="quiz-section">
-        <p id="progress">प्रश्न 1 / 7</p>
+        <p id="progress" style="font-weight: bold; color: #666;">प्रश्न 1 / 7</p>
         <div class="question" id="question-text">क्या आप अक्सर बिना किसी ठोस कारण के भविष्य या पैसों को लेकर असुरक्षित महसूस करते हैं?</div>
         <button class="btn btn-yes" onclick="answer('yes')">हाँ</button>
         <button class="btn btn-no" onclick="answer('no')">नहीं</button>
     </div>
 
     <div id="result-section" class="result-box">
-        <h3>आपका परीक्षण परिणाम:</h3>
-        <p id="result-text" style="font-size: 20px; font-weight: bold; color: #d9534f;"></p>
-        <p style="font-size: 16px; line-height: 1.6;"><strong>सुझाव:</strong> इस चक्र की शुद्धि और रोगों से मुक्ति पाने के लिए हीलिंग वाटर बनाकर निरंतर सेवन करें।</p>
-        <hr>
-        <p style="font-weight: bold; color: #555;">हीलिंग वाटर बनाने की प्रामाणिक विधि जानने के लिए हमसे संपर्क करें:</p>
-        <a id="contact-btn" href="#" target="_blank" class="btn btn-contact">💬 विधि जानने के लिए संपर्क करें</a>
-        <br>
-        <a id="share-btn" href="#" target="_blank" class="btn">📢 परिणाम WhatsApp पर शेयर करें</a>
+        <h3 style="text-align: center; color: #4a154b;">आपका परीक्षण परिणाम</h3>
+        <p style="font-size: 18px;"><strong>असंतुलित ऊर्जा केंद्र:</strong> <span id="result-text" class="highlight"></span></p>
+        
+        <div style="background: white; padding: 15px; border-radius: 6px; border-left: 5px solid #007bff; margin-top: 15px;">
+            <p style="margin: 5px 0;"><strong>🎯 प्राथमिक उपचार (Healonic Suggestion):</strong></p>
+            <p style="margin: 5px 0; line-height: 1.6;">इस चक्र की शुद्धि और इससे जुड़े रोगों से मुक्ति पाने के लिए <span id="bottle-color" class="highlight"></span> की काँच की बोतल में विशेष हीलिंग वाटर बनाकर निरंतर सेवन करें। इसे सूर्य की रोशनी में कुल <span id="charge-time" class="highlight"></span> चार्ज करना अनिवार्य है।</p>
+        </div>
+        
+        <hr style="margin: 20px 0;">
+        <p style="font-weight: bold; color: #333; text-align: center;">⚠️ नोट: हीलिंग वाटर को सही फ्रीक्वेंसी पर एक्टिवेट करने की प्रामाणिक विधि जानने के लिए तुरंत हमसे संपर्क करें।</p>
+        <div style="text-align: center;">
+            <a id="contact-btn" href="#" target="_blank" class="btn btn-contact">💬 प्रामाणिक विधि जानने के लिए संपर्क करें</a>
+            <br>
+            <a id="share-btn" href="#" target="_blank" class="btn">📢 परिणाम WhatsApp पर शेयर करें</a>
+        </div>
     </div>
 </div>
 
 <script>
     const questions = [
-        { text: "क्या आप अक्सर बिना किसी ठोस कारण के भविष्य या पैसों को लेकर असुरक्षित महसूस करते हैं?", chakra: "मूलाधार चक्र (Root Chakra)" },
-        { text: "क्या आपके जीवन में रचनात्मकता (Creativity) और उत्साह की कमी महसूस होती है?", chakra: "स्वाधिष्ठान चक्र (Sacral Chakra)" },
-        { text: "क्या आपको छोटे-छोटे निर्णय लेने में बहुत कठिनाई होती है या हमेशा आत्मविश्वास की कमी लगती है?", chakra: "मणिपुर चक्र (Solar Plexus Chakra)" },
-        { text: "क्या आपके लिए दूसरों को क्षमा करना या उन पर आसानी से भरोसा करना बहुत मुश्किल होता है?", chakra: "अनाहत चक्र (Heart Chakra)" },
-        { text: "क्या आपको अपनी बात या विचारों को दूसरों के सामने रखने में झिझक या डर महसूस होता है?", chakra: "विशुद्धि चक्र (Throat Chakra)" },
-        { text: "क्या आपका मन हमेशा भ्रमित (Confused) रहता है और आप जीवन का सही लक्ष्य तय नहीं कर पा रहे हैं?", chakra: "आज्ञा चक्र (Third Eye Chakra)" },
-        { text: "क्या आप जीवन को पूरी तरह निरर्थक मानते हैं और मानसिक शांति महसूस नहीं कर पाते?", chakra: "सहस्रार चक्र (Crown Chakra)" }
+        { text: "क्या आप अक्सर बिना किसी ठोस कारण के भविष्य या पैसों को लेकर असुरक्षित महसूस करते हैं?", chakra: "मूलाधार चक्र (Root Chakra)", bottle: "लाल रंग", time: "6 घंटे" },
+        { text: "क्या आपके जीवन में रचनात्मकता (Creativity) और उत्साह की कमी महसूस होती है?", chakra: "स्वाधिष्ठान चक्र (Sacral Chakra)", bottle: "नारंगी (Orange) रंग", time: "5 घंटे" },
+        { text: "क्या आपको छोटे-छोटे निर्णय लेने में बहुत कठिनाई होती है या हमेशा आत्मविश्वास की कमी लगती है?", chakra: "मणिपुर चक्र (Solar Plexus Chakra)", bottle: "पीले रंग", time: "4 घंटे" },
+        { text: "क्या आपके लिए दूसरों को क्षमा करना या उन पर आसानी से भरोसा करना बहुत मुश्किल होता है?", chakra: "अनाहत चक्र (Heart Chakra)", bottle: "हरे रंग", time: "6 घंटे" },
+        { text: "क्या आपको अपनी बात या विचारों को दूसरों के सामने रखने में झिझक या डर महसूस होता है?", chakra: "विशुद्धि चक्र (Throat Chakra)", bottle: "नीले (Light Blue) रंग", time: "4 घंटे" },
+        { text: "क्या आपका मन हमेशा भ्रमित (Confused) रहता है और आप जीवन का सही लक्ष्य तय नहीं कर पा रहे हैं?", chakra: "आज्ञा चक्र (Third Eye Chakra)", bottle: "गहरे नीले (Indigo) रंग", time: "5 घंटे" },
+        { text: "क्या आप जीवन को पूरी तरह निरर्थक मानते हैं और मानसिक शांति महसूस नहीं कर पाते?", chakra: "सहस्रार चक्र (Crown Chakra)", bottle: "बैंगनी (Violet) रंग", time: "6 घंटे" }
     ];
 
     let currentIdx = 0;
@@ -58,10 +68,7 @@
         let currentChakra = questions[currentIdx].chakra;
         if (val === 'yes') {
             scores[currentChakra] = (scores[currentChakra] || 0) + 1;
-        } else {
-            scores[currentChakra] = (scores[currentChakra] || 0) + 0;
         }
-
         currentIdx++;
         if (currentIdx < questions.length) {
             document.getElementById("progress").innerText = `प्रश्न ${currentIdx + 1} / 7`;
@@ -75,7 +82,7 @@
         document.getElementById("quiz-section").style.display = "none";
         document.getElementById("result-section").style.display = "block";
 
-        let maxChakra = "सभी चक्र संतुलित हैं";
+        let maxChakra = "";
         let maxScore = 0;
 
         for (let chakra in scores) {
@@ -86,18 +93,25 @@
         }
 
         if(maxScore === 0) {
-            maxChakra = "आपके सभी मुख्य चक्र अच्छी स्थिति में प्रतीत हो रहे हैं!";
+            document.getElementById("result-text").innerText = "आपके सभी मुख्य चक्र संतुलित हैं!";
+            document.getElementById("bottle-color").innerText = "सफेद/पारदर्शी";
+            document.getElementById("charge-time").innerText = "2 घंटे";
+            maxChakra = "सभी मुख्य चक्र संतुलित हैं";
+        } else {
+            const chakraData = questions.find(q => q.chakra === maxChakra);
+            document.getElementById("result-text").innerText = maxChakra;
+            document.getElementById("bottle-color").innerText = chakraData.bottle;
+            document.getElementById("charge-time").innerText = chakraData.time;
         }
 
-        document.getElementById("result-text").innerText = maxChakra;
+        // फिक्स किया गया गंतव्य नंबर और यूआरएल सेफ मैसेजेस
+        let phone = "9335128544"; 
+        let contactMsg = encodeURIComponent("प्रणाम Healonic, मैंने चक्र परीक्षण किया है। मेरा " + maxChakra + " असंतुलित आया है। कृपया मुझे इसके लिए हीलिंग वाटर चार्ज करने की प्रामाणिक विधि बताएं।");
+        let shareMsg = encodeURIComponent("नमस्ते! मैंने Healonic पर अपना चक्र टेस्ट किया। मेरा असंतुलित ऊर्जा केंद्र है: " + maxChakra + "। आप भी नीचे दिए गए लिंक से अपना टेस्ट कर सकते हैं: https://github.io");
 
-        // WhatsApp Links Configuration
-        let phone = "919335128544";
-        let contactMsg = encodeURIComponent(`प्रणाम, मैंने चक्र टेस्ट किया है और मुझे इसके लिए हीलिंग वाटर बनाने की विधि जाननी है।`);
-        let shareMsg = encodeURIComponent(`नमस्ते! मैंने अपना चक्र अलाइनमेंट टेस्ट किया। मेरा असंतुलित चक्र है: ${maxChakra}। आप भी अपना टेस्ट कर सकते हैं!`);
-
-        document.getElementById("contact-btn").href = `https://wa.me{phone}?text=${contactMsg}`;
-        document.getElementById("share-btn").href = `https://wa.me{shareMsg}`;
+        // वाट्सएप के आधिकारिक यूनिवर्सल लिंक का उपयोग
+        document.getElementById("contact-btn").href = "https://whatsapp.com" + phone + "&text=" + contactMsg;
+        document.getElementById("share-btn").href = "https://whatsapp.com" + shareMsg;
     }
 </script>
 
