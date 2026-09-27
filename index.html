@@ -43,10 +43,10 @@
         <hr style="margin: 20px 0;">
         <p style="font-weight: bold; color: #333; text-align: center;">⚠️ नोट: हीलिंग वाटर को सही फ्रीक्वेंसी पर एक्टिवेट करने की प्रामाणिक विधि जानने के लिए तुरंत हमसे संपर्क करें।</p>
         <div style="text-align: center;">
-            <!-- बिल्कुल सीधे और साधारण HTML लिंक्स जो कभी फेल नहीं होते -->
-            <a href="https://whatsapp.com" target="_blank" class="btn btn-contact">💬 प्रामाणिक विधि जानने के लिए संपर्क करें</a>
+            <!-- यहाँ href को सीधे फोन के व्हाट्सएप प्रोटोकॉल पर सेट किया गया है ताकि कोई बीच का पेज न खुले -->
+            <a id="direct-contact" href="whatsapp://send?phone=919335128544" class="btn btn-contact">💬 प्रामाणिक विधि जानने के लिए संपर्क करें</a>
             <br>
-            <a href="https://whatsapp.com" target="_blank" class="btn">📢 परिणाम WhatsApp पर शेयर करें</a>
+            <a id="direct-share" href="whatsapp://send?text=" class="btn">📢 परिणाम WhatsApp पर शेयर करें</a>
         </div>
     </div>
 </div>
@@ -64,6 +64,7 @@
 
     let currentIdx = 0;
     let scores = {};
+    let finalChakra = "";
 
     function handleAnswer(val) {
         let currentChakra = questions[currentIdx].chakra;
@@ -94,10 +95,20 @@
         }
 
         if (blockedChakras.length === 0) {
+            finalChakra = "सभी मुख्य चक्र संतुलित हैं";
             document.getElementById("result-text").innerText = "आपके सभी मुख्य चक्र संतुलित हैं!";
         } else {
-            document.getElementById("result-text").innerText = blockedChakras.join(", ");
+            finalChakra = blockedChakras.join(", ");
+            document.getElementById("result-text").innerText = finalChakra;
         }
+
+        // डायनेमिक मैसेजेस जो बटन पर लोड होंगे
+        let contactTxt = encodeURIComponent("प्रणाम Healonic, मैंने चक्र परीक्षण किया है। मेरा असंतुलित चक्र है: " + finalChakra + "। कृपया मुझे इसके लिए हीलिंग वाटर चार्ज करने की प्रामाणिक विधि बताएं।");
+        let shareTxt = encodeURIComponent("नमस्ते! मैंने Healonic पर अपना चक्र टेस्ट किया। मेरा असंतुलित ऊर्जा केंद्र है: " + finalChakra + "। आप भी नीचे दिए गए लिंक से अपना टेस्ट कर सकते हैं: https://github.io");
+
+        // सीधे एंकर टैग्स के लिंक को डायनेमिकली अपडेट करना जो बिना किसी अड़चन के व्हाट्सएप खोलेंगे
+        document.getElementById("direct-contact").href = "whatsapp://send?phone=919335128544&text=" + contactTxt;
+        document.getElementById("direct-share").href = "whatsapp://send?text=" + shareTxt;
     }
 </script>
 
