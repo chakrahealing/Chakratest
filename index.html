@@ -27,8 +27,8 @@
     <div id="quiz-section">
         <p id="progress" style="font-weight: bold; color: #666;">प्रश्न 1 / 7</p>
         <div class="question" id="question-text">क्या आप अक्सर बिना किसी ठोस कारण के भविष्य या पैसों को लेकर असुरक्षित महसूस करते हैं?</div>
-        <button class="btn btn-yes" onclick="answer('yes')">हाँ</button>
-        <button class="btn btn-no" onclick="answer('no')">नहीं</button>
+        <button class="btn btn-yes" onclick="handleAnswer('yes')">हाँ</button>
+        <button class="btn btn-no" onclick="handleAnswer('no')">नहीं</button>
     </div>
 
     <div id="result-section" class="result-box">
@@ -62,26 +62,20 @@
     ];
 
     let currentIdx = 0;
-    // सातों चक्रों का प्रारंभिक स्कोर 0 सेट किया गया है ताकि लॉजिक बिल्कुल सही काम करे
-    let scores = {
-        "मूलाधार चक्र (Root Chakra)": 0,
-        "स्वाधिष्ठान चक्र (Sacral Chakra)": 0,
-        "मणिपुर चक्र (Solar Plexus Chakra)": 0,
-        "अनाहत चक्र (Heart Chakra)": 0,
-        "विशुद्धि चक्र (Throat Chakra)": 0,
-        "आज्ञा चक्र (Third Eye Chakra)": 0,
-        "सहस्रार चक्र (Crown Chakra)": 0
-    };
-    let finalChakra = "सभी मुख्य चक्र संतुलित हैं";
+    let scores = {};
+    let finalChakra = "";
 
-    function answer(val) {
+    function handleAnswer(val) {
         let currentChakra = questions[currentIdx].chakra;
         if (val === 'yes') {
-            scores[currentChakra] = 1; // जिस प्रश्न पर 'हाँ' होगा, वह चक्र ब्लॉक माना जाएगा
+            scores[currentChakra] = 1;
+        } else {
+            scores[currentChakra] = 0;
         }
+        
         currentIdx++;
         if (currentIdx < questions.length) {
-            document.getElementById("progress").innerText = `प्रश्न ${currentIdx + 1} / 7`;
+            document.getElementById("progress").innerText = "प्रश्न " + (currentIdx + 1) + " / 7";
             document.getElementById("question-text").innerText = questions[currentIdx].text;
         } else {
             showResults();
@@ -92,7 +86,6 @@
         document.getElementById("quiz-section").style.display = "none";
         document.getElementById("result-section").style.display = "block";
 
-        // यहाँ कोड अब सभी चक्रों की निष्पक्ष जांच करेगा
         let blockedChakras = [];
         for (let chakra in scores) {
             if (scores[chakra] === 1) {
@@ -101,28 +94,37 @@
         }
 
         if (blockedChakras.length === 0) {
-            finalChakra = "आपके सभी मुख्य चक्र संतुलित हैं!";
+            finalChakra = "सभी मुख्य चक्र संतुलित हैं";
+            document.getElementById("result-text").innerText = "आपके सभी मुख्य चक्र संतुलित हैं!";
         } else {
-            // यदि एक से अधिक चक्र ब्लॉक हैं, तो यह सबसे अंतिम ब्लॉक चक्र या पहले चक्र को सटीक दिखाएगा
             finalChakra = blockedChakras.join(", ");
+            document.getElementById("result-text").innerText = finalChakra;
         }
-
-        document.getElementById("result-text").innerText = finalChakra;
     }
 
     function goToContact(e) {
         if(e) { e.preventDefault(); e.stopPropagation(); }
         let phone = "919335128544"; 
-        let contactMsg = encodeURIComponent("प्रणाम Healonic, मैंने चक्र परीक्षण किया है। मेरा " + finalChakra + " असंतुलित आया है। कृपया मुझे इसके लिए हीलिंग वाटर चार्ज करने की प्रामाणिक विधि बताएं।");
+        let txt = "प्रणाम Healonic, मैंने चक्र परीक्षण किया है। मेरा असंतुलित चक्र है: " + finalChakra + "। कृपया मुझे इसके लिए हीलिंग वाटर चार्ज करने की प्रामाणिक विधि बताएं।";
         
-        window.location.href = "https://whatsapp.com" + phone + "&text=" + contactMsg;
+        // सुरक्षित और डायरेक्ट डीप लिंक जो सीधे व्हाट्सएप एप ओपन करेगा
+        window.location.href = "whatsapp://send?phone=" + phone + "&text=" + encodeURIComponent(txt);
+        
+        // यदि किसी फोन में डायरेक्ट प्रोटोकॉल ब्लॉक हो, तो बैकअप के लिए वेब लिंक 1 सेकंड बाद चलेगा
+        setTimeout(function() {
+            window.location.href = "https://whatsapp.com" + phone + "&text=" + encodeURIComponent(txt);
+        }, 1000);
     }
 
     function shareOnWhatsApp(e) {
         if(e) { e.preventDefault(); e.stopPropagation(); }
-        let shareMsg = encodeURIComponent("नमस्ते! मैंने Healonic पर अपना चक्र टेस्ट किया। मेरा असंतुलित ऊर्जा केंद्र है: " + finalChakra + "। आप भी नीचे दिए गए लिंक से अपना टेस्ट कर सकते हैं: https://github.io");
+        let txt = "नमस्ते! मैंने Healonic पर अपना चक्र टेस्ट किया। मेरा असंतुलित ऊर्जा केंद्र है: " + finalChakra + "। आप भी नीचे दिए गए लिंक से अपना टेस्ट कर सकते हैं: https://github.io";
         
-        window.location.href = "https://whatsapp.com" + shareMsg;
+        window.location.href = "whatsapp://send?text=" + encodeURIComponent(txt);
+        
+        setTimeout(function() {
+            window.location.href = "https://whatsapp.com" + encodeURIComponent(txt);
+        }, 1000);
     }
 </script>
 
