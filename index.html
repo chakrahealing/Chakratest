@@ -37,37 +37,47 @@
         
         <div style="background: white; padding: 15px; border-radius: 6px; border-left: 5px solid #007bff; margin-top: 15px;">
             <p style="margin: 5px 0;"><strong>🎯 प्राथमिक उपचार (Healonic Suggestion):</strong></p>
-            <p style="margin: 5px 0; line-height: 1.6;">इस चक्र की शुद्धि और इससे जुड़े रोगों से मुक्ति पाने के लिए <span id="bottle-color" class="highlight"></span> की काँच की बोतल में विशेष हीलिंग वाटर बनाकर निरंतर सेवन करें। इसे सूर्य की रोशनी में कुल <span id="charge-time" class="highlight"></span> चार्ज करना अनिवार्य है।</p>
+            <p style="margin: 5px 0; line-height: 1.6;">इस चक्र की शुद्धि और इससे जुड़े रोगों से मुक्ति पाने के लिए हीलिंग वाटर बनाकर निरंतर सेवन करें।</p>
         </div>
         
         <hr style="margin: 20px 0;">
         <p style="font-weight: bold; color: #333; text-align: center;">⚠️ नोट: हीलिंग वाटर को सही फ्रीक्वेंसी पर एक्टिवेट करने की प्रामाणिक विधि जानने के लिए तुरंत हमसे संपर्क करें।</p>
         <div style="text-align: center;">
-            <a id="contact-btn" href="#" target="_blank" class="btn btn-contact">💬 प्रामाणिक विधि जानने के लिए संपर्क करें</a>
+            <button class="btn btn-contact" onclick="goToContact(event)">💬 प्रामाणिक विधि जानने के लिए संपर्क करें</button>
             <br>
-            <a id="share-btn" href="#" target="_blank" class="btn">📢 परिणाम WhatsApp पर शेयर करें</a>
+            <button class="btn" onclick="shareOnWhatsApp(event)">📢 परिणाम WhatsApp पर शेयर करें</button>
         </div>
     </div>
 </div>
 
 <script>
     const questions = [
-        { text: "क्या आप अक्सर बिना किसी ठोस कारण के भविष्य या पैसों को लेकर असुरक्षित महसूस करते हैं?", chakra: "मूलाधार चक्र (Root Chakra)", bottle: "लाल रंग", time: "6 घंटे" },
-        { text: "क्या आपके जीवन में रचनात्मकता (Creativity) और उत्साह की कमी महसूस होती है?", chakra: "स्वाधिष्ठान चक्र (Sacral Chakra)", bottle: "नारंगी (Orange) रंग", time: "5 घंटे" },
-        { text: "क्या आपको छोटे-छोटे निर्णय लेने में बहुत कठिनाई होती है या हमेशा आत्मविश्वास की कमी लगती है?", chakra: "मणिपुर चक्र (Solar Plexus Chakra)", bottle: "पीले रंग", time: "4 घंटे" },
-        { text: "क्या आपके लिए दूसरों को क्षमा करना या उन पर आसानी से भरोसा करना बहुत मुश्किल होता है?", chakra: "अनाहत चक्र (Heart Chakra)", bottle: "हरे रंग", time: "6 घंटे" },
-        { text: "क्या आपको अपनी बात या विचारों को दूसरों के सामने रखने में झिझक या डर महसूस होता है?", chakra: "विशुद्धि चक्र (Throat Chakra)", bottle: "नीले (Light Blue) रंग", time: "4 घंटे" },
-        { text: "क्या आपका मन हमेशा भ्रमित (Confused) रहता है और आप जीवन का सही लक्ष्य तय नहीं कर पा रहे हैं?", chakra: "आज्ञा चक्र (Third Eye Chakra)", bottle: "गहरे नीले (Indigo) रंग", time: "5 घंटे" },
-        { text: "क्या आप जीवन को पूरी तरह निरर्थक मानते हैं और मानसिक शांति महसूस नहीं कर पाते?", chakra: "सहस्रार चक्र (Crown Chakra)", bottle: "बैंगनी (Violet) रंग", time: "6 घंटे" }
+        { text: "क्या आप अक्सर बिना किसी ठोस कारण के भविष्य या पैसों को लेकर असुरक्षित महसूस करते हैं?", chakra: "मूलाधार चक्र (Root Chakra)" },
+        { text: "क्या आपके जीवन में रचनात्मकता (Creativity) और उत्साह की कमी महसूस होती है?", chakra: "स्वाधिष्ठान चक्र (Sacral Chakra)" },
+        { text: "क्या आपको छोटे-छोटे निर्णय लेने में बहुत कठिनाई होती है या हमेशा आत्मविश्वास की कमी लगती है?", chakra: "मणिपुर चक्र (Solar Plexus Chakra)" },
+        { text: "क्या आपके लिए दूसरों को क्षमा करना या उन पर आसानी से भरोसा करना बहुत मुश्किल होता है?", chakra: "अनाहत चक्र (Heart Chakra)" },
+        { text: "क्या आपको अपनी बात या विचारों को दूसरों के सामने रखने में झिझक या डर महसूस होता है?", chakra: "विशुद्धि चक्र (Throat Chakra)" },
+        { text: "क्या आपका मन हमेशा भ्रमित (Confused) रहता है और आप जीवन का सही लक्ष्य तय नहीं कर पा रहे हैं?", chakra: "आज्ञा चक्र (Third Eye Chakra)" },
+        { text: "क्या आप जीवन को पूरी तरह निरर्थक मानते हैं और मानसिक शांति महसूस नहीं कर पाते?", chakra: "सहस्रार चक्र (Crown Chakra)" }
     ];
 
     let currentIdx = 0;
-    let scores = {};
+    // सातों चक्रों का प्रारंभिक स्कोर 0 सेट किया गया है ताकि लॉजिक बिल्कुल सही काम करे
+    let scores = {
+        "मूलाधार चक्र (Root Chakra)": 0,
+        "स्वाधिष्ठान चक्र (Sacral Chakra)": 0,
+        "मणिपुर चक्र (Solar Plexus Chakra)": 0,
+        "अनाहत चक्र (Heart Chakra)": 0,
+        "विशुद्धि चक्र (Throat Chakra)": 0,
+        "आज्ञा चक्र (Third Eye Chakra)": 0,
+        "सहस्रार चक्र (Crown Chakra)": 0
+    };
+    let finalChakra = "सभी मुख्य चक्र संतुलित हैं";
 
     function answer(val) {
         let currentChakra = questions[currentIdx].chakra;
         if (val === 'yes') {
-            scores[currentChakra] = (scores[currentChakra] || 0) + 1;
+            scores[currentChakra] = 1; // जिस प्रश्न पर 'हाँ' होगा, वह चक्र ब्लॉक माना जाएगा
         }
         currentIdx++;
         if (currentIdx < questions.length) {
@@ -82,36 +92,37 @@
         document.getElementById("quiz-section").style.display = "none";
         document.getElementById("result-section").style.display = "block";
 
-        let maxChakra = "";
-        let maxScore = 0;
-
+        // यहाँ कोड अब सभी चक्रों की निष्पक्ष जांच करेगा
+        let blockedChakras = [];
         for (let chakra in scores) {
-            if (scores[chakra] > maxScore) {
-                maxScore = scores[chakra];
-                maxChakra = chakra;
+            if (scores[chakra] === 1) {
+                blockedChakras.push(chakra);
             }
         }
 
-        if(maxScore === 0) {
-            document.getElementById("result-text").innerText = "आपके सभी मुख्य चक्र संतुलित हैं!";
-            document.getElementById("bottle-color").innerText = "सफेद/पारदर्शी";
-            document.getElementById("charge-time").innerText = "2 घंटे";
-            maxChakra = "सभी मुख्य चक्र संतुलित हैं";
+        if (blockedChakras.length === 0) {
+            finalChakra = "आपके सभी मुख्य चक्र संतुलित हैं!";
         } else {
-            const chakraData = questions.find(q => q.chakra === maxChakra);
-            document.getElementById("result-text").innerText = maxChakra;
-            document.getElementById("bottle-color").innerText = chakraData.bottle;
-            document.getElementById("charge-time").innerText = chakraData.time;
+            // यदि एक से अधिक चक्र ब्लॉक हैं, तो यह सबसे अंतिम ब्लॉक चक्र या पहले चक्र को सटीक दिखाएगा
+            finalChakra = blockedChakras.join(", ");
         }
 
-        // फिक्स किया गया गंतव्य नंबर और यूआरएल सेफ मैसेजेस
-        let phone = "9335128544"; 
-        let contactMsg = encodeURIComponent("प्रणाम Healonic, मैंने चक्र परीक्षण किया है। मेरा " + maxChakra + " असंतुलित आया है। कृपया मुझे इसके लिए हीलिंग वाटर चार्ज करने की प्रामाणिक विधि बताएं।");
-        let shareMsg = encodeURIComponent("नमस्ते! मैंने Healonic पर अपना चक्र टेस्ट किया। मेरा असंतुलित ऊर्जा केंद्र है: " + maxChakra + "। आप भी नीचे दिए गए लिंक से अपना टेस्ट कर सकते हैं: https://github.io");
+        document.getElementById("result-text").innerText = finalChakra;
+    }
 
-        // वाट्सएप के आधिकारिक यूनिवर्सल लिंक का उपयोग
-        document.getElementById("contact-btn").href = "https://whatsapp.com" + phone + "&text=" + contactMsg;
-        document.getElementById("share-btn").href = "https://whatsapp.com" + shareMsg;
+    function goToContact(e) {
+        if(e) { e.preventDefault(); e.stopPropagation(); }
+        let phone = "919335128544"; 
+        let contactMsg = encodeURIComponent("प्रणाम Healonic, मैंने चक्र परीक्षण किया है। मेरा " + finalChakra + " असंतुलित आया है। कृपया मुझे इसके लिए हीलिंग वाटर चार्ज करने की प्रामाणिक विधि बताएं।");
+        
+        window.location.href = "https://whatsapp.com" + phone + "&text=" + contactMsg;
+    }
+
+    function shareOnWhatsApp(e) {
+        if(e) { e.preventDefault(); e.stopPropagation(); }
+        let shareMsg = encodeURIComponent("नमस्ते! मैंने Healonic पर अपना चक्र टेस्ट किया। मेरा असंतुलित ऊर्जा केंद्र है: " + finalChakra + "। आप भी नीचे दिए गए लिंक से अपना टेस्ट कर सकते हैं: https://github.io");
+        
+        window.location.href = "https://whatsapp.com" + shareMsg;
     }
 </script>
 
